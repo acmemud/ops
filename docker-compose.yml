@@ -1,0 +1,13 @@
+version: "2"
+services:
+  mudlib:
+    image: acmemud/mudlib:1.0
+    restart: always
+    volumes:
+      - /usr/local/mud/lib
+  ldmud:
+    image: acmemud/ldmud:3.5.0
+    command: /bin/bash
+    restart: always
+    ports:
+      - 2010:2010
