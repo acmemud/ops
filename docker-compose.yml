@@ -11,3 +11,6 @@ services:
     restart: always
     ports:
       - 2010:2010
+    volumes_from:
+      - mudlib
+    tty: true
