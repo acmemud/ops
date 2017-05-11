@@ -16,10 +16,11 @@ RUN git config --global http.sslVerify false
 
 RUN mkdir -p /usr/local/mud
 
-# Fetch the driver from GitHub
+# Fetch the mudlib from GitHub
 RUN git clone https://github.com/acmemud/acme-mudlib.git /usr/local/mud/lib
 
 WORKDIR /usr/local/mud/lib
 
+# Since we don't have an ssh key, and the repos are public, let's avoid ssh submodules
 RUN sed -i 's/git@github.com:/git:\/\/github.com\//' .gitmodules
 RUN git submodule update --init --recursive
