@@ -5,12 +5,12 @@ MAINTAINER Acme MUD
 ENV MUDLIB_VERSION 1.0
 
 RUN apt-get update \
-    && apt-get -y install --no-install-recommends \
-      git \
-    && apt-get clean \
-    && apt-get autoclean \
-    && apt-get autoremove \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && apt-get -y install --no-install-recommends \
+    git \
+  && apt-get clean \
+  && apt-get autoclean \
+  && apt-get autoremove \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Fetch the mudlib from GitHub
 RUN git config --global http.sslVerify false \
