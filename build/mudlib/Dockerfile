@@ -2,8 +2,7 @@ FROM ubuntu:14.04
 
 MAINTAINER Acme MUD
 
-ENV MUD_VERSION 3.5.0
-ENV MUD_HOME /home/mud
+ENV MUDLIB_VERSION 1.0
 
 RUN apt-get update \
     && apt-get -y install --no-install-recommends \
