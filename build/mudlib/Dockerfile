@@ -1,7 +1,5 @@
 FROM ubuntu:14.04
 
-MAINTAINER Acme MUD
-
 ENV MUDLIB_VERSION 1.0
 
 RUN apt-get update \
