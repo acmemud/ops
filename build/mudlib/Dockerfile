@@ -1,6 +1,7 @@
 FROM ubuntu:14.04
 
 ENV MUDLIB_VERSION 1.0
+ENV MUDLIB_HOME /usr/local/mudlib
 
 RUN apt-get update \
   && apt-get -y install --no-install-recommends \
@@ -12,14 +13,14 @@ RUN apt-get update \
 
 # Fetch the mudlib from GitHub
 RUN git config --global http.sslVerify false \
-  && mkdir -p /usr/local/mud \
-  && git clone https://github.com/acmemud/acme-mudlib.git /usr/local/mud/lib
+  && mkdir -p ${MUDLIB_HOME} \
+  && git clone https://github.com/acmemud/acme-mudlib.git ${MUDLIB_HOME}
 
-WORKDIR /usr/local/mud/lib
+WORKDIR ${MUDLIB_HOME}
 
 # Since we don't have an ssh key, and the repos are public, let's avoid ssh submodules
 RUN sed -i 's/git@github.com:/git:\/\/github.com\//' .gitmodules \
   && git submodule update --init --recursive
 
 # Expose the mudlib for use in another container
-VOLUME /usr/local/mud/lib
+VOLUME ${MUDLIB_HOME}

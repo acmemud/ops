@@ -4,13 +4,18 @@ services:
     image: acmemud/mudlib:1.0
     restart: always
     volumes:
-      - /usr/local/mud/lib
-  ldmud:
-    image: acmemud/ldmud:3.5.0
-    command: /bin/bash
+      - /usr/local/mudlib
+  driver:
+    image: acmemud/driver:3.5.0
     restart: always
+    volumes:
+      - /usr/local/mud
+  mud:
+    image: acmemud/mud:3.5.0
+    command: /usr/local/mud/bin/ldmud 2010
     ports:
       - 2010:2010
     volumes_from:
       - mudlib
+      - driver
     tty: true

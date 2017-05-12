@@ -27,8 +27,6 @@ RUN dpkg --add-architecture i386 \
 
 RUN useradd -ms /bin/bash mud
 
-USER mud
-
 WORKDIR ${MUD_HOME}
 
 # Fetch the driver from GitHub
@@ -40,7 +38,7 @@ WORKDIR ${MUD_HOME}/ldmud/src
 RUN autoconf autoconf/configure.ac > configure \
   && chmod +x configure \
   && cp ../autoconf/machine.h.in . \
-  && ./configure \
-  && make
+  && ./configure --libdir=/usr/local/mudlib \
+  && make install-all
 
-EXPOSE 2010
+VOLUME /usr/local/mud
