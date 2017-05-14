@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 ENV MUDLIB_VERSION 1.0
-ENV MUDLIB_HOME /usr/local/mudlib
+ENV MUDLIB_HOME /usr/local/acme/mudlib
 
 RUN apt-get update \
   && apt-get -y install --no-install-recommends \
